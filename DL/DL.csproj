@@ -1,10 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>b8517bb8-259f-461d-9ee6-0a616d9c9dec</ProjectGuid>
+    <ProjectGuid>{B8517BB8-259F-461D-9EE6-0A616D9C9DEC}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>DL</RootNamespace>
@@ -31,24 +31,86 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System"/>
-    
-    <Reference Include="System.Core"/>
-    <Reference Include="System.Xml.Linq"/>
-    <Reference Include="System.Data.DataSetExtensions"/>
-    
-    
-    <Reference Include="Microsoft.CSharp"/>
-    
-    <Reference Include="System.Data"/>
-    
-    <Reference Include="System.Net.Http"/>
-    
-    <Reference Include="System.Xml"/>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="Alumno.cs">
+      <DependentUpon>JPinedaDigisPro.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AlumnoGetAll_Result.cs">
+      <DependentUpon>JPinedaDigisPro.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AlumnoGetById_Result.cs">
+      <DependentUpon>JPinedaDigisPro.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Conexion.cs" />
+    <Compile Include="JPinedaDigisPro.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>JPinedaDigisPro.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="JPinedaDigisPro.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>JPinedaDigisPro.tt</DependentUpon>
+    </Compile>
+    <Compile Include="JPinedaDigisPro.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>JPinedaDigisPro.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Materia.cs">
+      <DependentUpon>JPinedaDigisPro.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MateriaGetAll_Result.cs">
+      <DependentUpon>JPinedaDigisPro.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MateriaGetById_Result.cs">
+      <DependentUpon>JPinedaDigisPro.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config" />
+    <EntityDeploy Include="JPinedaDigisPro.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>JPinedaDigisPro.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="JPinedaDigisPro.edmx.diagram">
+      <DependentUpon>JPinedaDigisPro.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="JPinedaDigisPro.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>JPinedaDigisPro.edmx</DependentUpon>
+      <LastGenOutput>JPinedaDigisPro.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="JPinedaDigisPro.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>JPinedaDigisPro.edmx</DependentUpon>
+      <LastGenOutput>JPinedaDigisPro.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
- </Project>
+</Project>
