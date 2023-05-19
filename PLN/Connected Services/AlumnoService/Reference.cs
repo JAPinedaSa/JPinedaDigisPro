@@ -160,10 +160,10 @@ namespace PLN.AlumnoService {
         System.Threading.Tasks.Task<PLN.AlumnoService.Result> GetAllAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAlumno/GetById", ReplyAction="http://tempuri.org/IAlumno/GetByIdResponse")]
-        PLN.AlumnoService.Result GetById(int IdAseguradora);
+        PLN.AlumnoService.Result GetById(int IdAlumno);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAlumno/GetById", ReplyAction="http://tempuri.org/IAlumno/GetByIdResponse")]
-        System.Threading.Tasks.Task<PLN.AlumnoService.Result> GetByIdAsync(int IdAseguradora);
+        System.Threading.Tasks.Task<PLN.AlumnoService.Result> GetByIdAsync(int IdAlumno);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -229,8 +229,8 @@ namespace PLN.AlumnoService {
             return base.Channel.GetById(IdAlumno);
         }
         
-        public System.Threading.Tasks.Task<PLN.AlumnoService.Result> GetByIdAsync(int IdAseguradora) {
-            return base.Channel.GetByIdAsync(IdAseguradora);
+        public System.Threading.Tasks.Task<PLN.AlumnoService.Result> GetByIdAsync(int IdAlumno) {
+            return base.Channel.GetByIdAsync(IdAlumno);
         }
     }
 }

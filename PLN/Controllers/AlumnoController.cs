@@ -13,7 +13,7 @@ namespace PLN.Controllers
 
         [HttpGet]
         public ActionResult GetAll()
-        {
+        {  
             ML.Alumno alumno = new ML.Alumno();
 
            
