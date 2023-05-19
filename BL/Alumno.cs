@@ -169,7 +169,7 @@ namespace BL
                             else
                             {
                                 result.Correct = false;
-                                result.ErrorMessage = "No jalo este pedo banda ";
+                                
                             }
 
 

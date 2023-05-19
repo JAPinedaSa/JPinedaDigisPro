@@ -7,14 +7,14 @@
 <div class="container">
     <div class=row>
         <div class="text-center">
-            <h2>Aseguradoras</h2>
+            <h2>Alumnos</h2>
 
         </div>
     </div>
 
     <div class="row">
         <div class="col-md-12">
-            <h5>Seleccione una Aseguradora para editarla o + para agregar...</h5>
+            <h5>Seleccione un Alumno para editarlo o + para agregar...</h5>
             <hr />
         </div>
     </div>
@@ -22,7 +22,7 @@
         @Html.ActionLink("+", "Form", "Alumno", htmlAttributes: new { @class = "btn btn-success" })
     </div>
     <br />
-    <table class="table   table-hover table-bordered table-responsive">
+    <table class="table   table-hover table-bordered table-responsive ">
         <thead>
             <tr class="table-secondary">
                 <td>Editar</td>
@@ -38,7 +38,7 @@
             @foreach (ML.Alumno alumno in Model.Alumnos)
             {
                 <tr>
-                    <td style="text-align: center; vertical-align: middle;"><a class="btn btn-info glyphicon" href="@Url.Action("Form", "Alumno", new { IdAlumno = alumno.IdAlumno })"><i class="bi bi-pencil-square" style="color: ivory"></i>Editar</a></td>
+                    <td style="text-align: center; vertical-align: middle;"><a class="btn btn-warning glyphicon" href="@Url.Action("Form", "Alumno", new { IdAlumno = alumno.IdAlumno })"><i class="bi bi-pencil-square" style="color: ivory"></i>Editar</a></td>
                     <td style="display :none;">@alumno.IdAlumno  </td>
                     <td>@alumno.Nombre </td>
                     <td>@alumno.ApellidoPaterno </td>

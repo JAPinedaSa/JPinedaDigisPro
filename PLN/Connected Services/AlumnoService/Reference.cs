@@ -225,8 +225,8 @@ namespace PLN.AlumnoService {
             return base.Channel.GetAllAsync();
         }
         
-        public PLN.AlumnoService.Result GetById(int IdAseguradora) {
-            return base.Channel.GetById(IdAseguradora);
+        public PLN.AlumnoService.Result GetById(int IdAlumno) {
+            return base.Channel.GetById(IdAlumno);
         }
         
         public System.Threading.Tasks.Task<PLN.AlumnoService.Result> GetByIdAsync(int IdAseguradora) {

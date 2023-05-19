@@ -25,7 +25,7 @@ namespace SLWCF
         SL.Result GetAll();
 
         [OperationContract]
-        [ServiceKnownType(typeof(ML.Alumno))]
-        SL.Result GetById(int IdAseguradora);
+        //[ServiceKnownType(typeof(ML.Alumno))]
+        SL.Result GetById(int IdAlumno);
     }
 }

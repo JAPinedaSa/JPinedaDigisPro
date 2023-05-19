@@ -1,0 +1,86 @@
+﻿@model ML.Alumno
+@{
+    ViewBag.Title = "Form";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+
+    <div class="col-md-12">
+
+        @using (Html.BeginForm("Form", "Alumno", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+
+            <div class="row">
+                <div class="col-md-4">
+
+                    @Html.LabelFor(model => model.IdAlumno, new { @class = "hidden" })
+
+                    @Html.TextBoxFor(model => model.IdAlumno, new { @class = "hidden form-control" })
+
+
+                </div>
+
+                <div class="col-md-4 ">
+
+                    @Html.LabelFor(model => model.Nombre)
+
+                    <div class="input-group text-center">
+                        <span class="input-group-text"> <i class="fa-solid fa-user-pen" style="color: #000000;"></i> </span>
+                        @Html.TextBoxFor(model => model.Nombre, new { @class = "form-control", @id = "txtNombre" })
+
+                        @Html.ValidationMessageFor(model => model.Nombre)
+                    </div>
+
+
+                </div>
+                <div class="col-md-4 ">
+
+                    @Html.LabelFor(model => model.ApellidoPaterno)
+
+                    <div class="input-group text-center">
+                        <span class="input-group-text"> <i class="fa-solid fa-user-pen" style="color: #000000;"></i> </span>
+                        @Html.TextBoxFor(model => model.ApellidoPaterno, new { @class = "form-control", @id = "txtApellidoP" })
+
+                        @Html.ValidationMessageFor(model => model.ApellidoPaterno)
+                    </div>
+
+
+                </div>
+                <div class="col-md-4 ">
+
+                    @Html.LabelFor(model => model.ApellidoMaterno)
+
+                    <div class="input-group text-center">
+                        <span class="input-group-text"> <i class="fa-solid fa-user-pen" style="color: #000000;"></i> </span>
+                        @Html.TextBoxFor(model => model.ApellidoMaterno, new { @class = "form-control", @id = "txtApellidoM" })
+
+                        @Html.ValidationMessageFor(model => model.ApellidoMaterno)
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+            
+
+            <br />
+            //BOTONES DE GUARDAR Y REGRESAR
+            <div class="row">
+
+                <div class="col text-center">
+                    <input type="submit" value="Guardar" class="btn btn-success" />
+                    @Html.ActionLink("Regresar", "GetAll", "Alumno", htmlAttributes: new { @class = "btn btn-danger" })
+                </div>
+
+            </div>
+
+
+        }
+
+    </div>
+
+</div>
+
