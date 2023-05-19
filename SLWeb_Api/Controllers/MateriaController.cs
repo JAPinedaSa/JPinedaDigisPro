@@ -21,7 +21,7 @@ namespace SLWeb_Api.Controllers
 
             if (result.Correct)
             {
-                return Ok(result.Objects);
+                return Ok(result);
             }
             else
             {
@@ -40,7 +40,7 @@ namespace SLWeb_Api.Controllers
 
             if (result.Correct)
             {
-                return Ok(result.Object);
+                return Ok(result);
             }
             else
             {
@@ -89,7 +89,7 @@ namespace SLWeb_Api.Controllers
 
             if (result.Correct)
             {
-                return Ok(result.Objects);
+                return Ok(result);
             }
             else
             {
