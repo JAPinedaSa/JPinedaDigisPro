@@ -1,0 +1,51 @@
+﻿@model ML.MateriaAsignada
+@{
+    ViewBag.Title = "GetAllMateriaAsignada";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class=row>
+        <div class="text-center">
+            <h2>Materias Asignadas Al Alumno :  @Model.Alumno.Nombre @Model.Alumno.ApellidoPaterno </h2>
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <h5>Seleccione un Alumno para editarlo o + para agregar...</h5>
+            <hr />
+        </div>
+    </div>
+    <div style="float:right;">
+        @Html.ActionLink("+", "GetAllMateriaNoAsignada", "MateriaAsignada", new { IdAlumno = Model.Alumno.IdAlumno }, htmlAttributes: new { @class = "btn btn-success" })
+    </div>
+    <br />
+    <table class="table   table-hover table-bordered table-responsive ">
+        <thead>
+            <tr class="table-secondary">
+                <td>Editar</td>
+                <td style="display :none;">id</td>
+                <td>Nombre</td>
+                <td>Costo</td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (ML.MateriaAsignada materiasAsignadas in Model.MatriasAsignadasAlumnos)
+            {
+                <tr>
+
+                    <td style="text-align: center; vertical-align: middle;"><a class="btn btn-info glyphicon" href="@Url.Action("GetAllMateriaAsignada", "MateriaAsignada", new { IdMateriaAsignada = materiasAsignadas.IdMateriaAsignada })"><i class="bi bi-pencil-square" style="color: ivory"></i>Editar</a></td>
+                    <td style="display :none;">@materiasAsignadas.IdMateriaAsignada  </td>
+                    <td>@materiasAsignadas.Materia.Nombre </td>
+                    <td>@materiasAsignadas.Materia.Costo </td>
+
+                </tr>
+            }
+
+        </tbody>
+    </table>
+
+</div>
+
