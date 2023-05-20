@@ -18,34 +18,47 @@
             <hr />
         </div>
     </div>
-    <div style="float:right;">
-        @Html.ActionLink("+", "GetAllMateriaNoAsignada", "MateriaAsignada", new { IdAlumno = Model.Alumno.IdAlumno }, htmlAttributes: new { @class = "btn btn-success" })
-    </div>
+
     <br />
-    <table class="table   table-hover table-bordered table-responsive ">
-        <thead>
-            <tr class="table-secondary">
-                <td>Editar</td>
-                <td style="display :none;">id</td>
-                <td>Nombre</td>
-                <td>Costo</td>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (ML.MateriaAsignada materiasAsignadas in Model.MatriasAsignadasAlumnos)
-            {
-                <tr>
-
-                    <td style="text-align: center; vertical-align: middle;"><a class="btn btn-info glyphicon" href="@Url.Action("GetAllMateriaAsignada", "MateriaAsignada", new { IdMateriaAsignada = materiasAsignadas.IdMateriaAsignada })"><i class="bi bi-pencil-square" style="color: ivory"></i>Editar</a></td>
-                    <td style="display :none;">@materiasAsignadas.Materia.IdMateria  </td>
-                    <td>@materiasAsignadas.Materia.Nombre </td>
-                    <td>@materiasAsignadas.Materia.Costo </td>
-
+    @using (Html.BeginForm("Form", "MateriaAsignada", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <table class="table   table-hover table-bordered table-responsive ">
+            <thead>
+                <tr class="table-secondary">
+                    <td>Editar</td>
+                    <td style="display :none;">id</td>
+                    <td>Nombre</td>
+                    <td>Costo</td>
                 </tr>
-            }
+            </thead>
+            <tbody>
+                @foreach (ML.MateriaAsignada materiasAsignadas in Model.MatriasAsignadasAlumnos)
+                {
+                    <tr>
 
-        </tbody>
-    </table>
+                        <td style="text-align: center; vertical-align: middle;"><a class="btn btn-info glyphicon" href="@Url.Action("GetAllMateriaAsignada", "MateriaAsignada", new { IdMateriaAsignada = materiasAsignadas.IdMateriaAsignada })"><i class="bi bi-pencil-square" style="color: ivory"></i>Editar</a></td>
+                        <td class="text-center"> <input type="checkbox" value="@materiasAsignadas.Materia.IdMateria" name""> </td>
+                        <td>@materiasAsignadas.Materia.Nombre </td>
+                        <td>@materiasAsignadas.Materia.Costo </td>
+
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+
+        //BOTONES DE GUARDAR Y REGRESAR
+        <div class="row">
+
+            <div class="col text-center">
+                <input type="submit" value="Guardar" class="btn btn-success" />
+                @Html.ActionLink("Regresar", "GetAllMateriaAsignada", "MateriaAsignada", htmlAttributes: new { @class = "btn btn-danger" })
+            </div>
+
+        </div>
+
+    }
+
 
 </div>
 

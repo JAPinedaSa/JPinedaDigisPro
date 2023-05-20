@@ -31,7 +31,7 @@ namespace PLN.Controllers
             return View(alumno);
 
         }
-
+        [HttpGet]
         public ActionResult GetAllMateriaAsignada(int IdAlumno, string Nombre, string ApellidoPaterno, string ApellidoMaterno)
         {
             ML.MateriaAsignada materiaAsignada = new ML.MateriaAsignada();
@@ -42,6 +42,7 @@ namespace PLN.Controllers
 
             return View(materiaAsignada);
         }
+        [HttpGet]
         public ActionResult GetAllMateriaNoAsignada(int IdAlumno)
         {
             ML.MateriaAsignada materiaNoAsignada = new ML.MateriaAsignada();
@@ -51,6 +52,26 @@ namespace PLN.Controllers
             materiaNoAsignada.Alumno = (ML.Alumno)resultAlumno.Object;
 
             return View(materiaNoAsignada);
+        }
+        [HttpPost]
+        public ActionResult Form(ML.MateriaAsignada materiasAlumnos)
+        {
+            ML.Result result = new ML.Result();
+            foreach (string IdMateria  in materiasAlumnos.MatriasAsignadasAlumnos)
+            {
+                ML.MateriaAsignada rowMateriasAsignadas = new ML.MateriaAsignada();
+
+                rowMateriasAsignadas.Alumno = new ML.Alumno();
+                rowMateriasAsignadas.Alumno.IdAlumno = materiasAlumnos.Alumno.IdAlumno;
+
+                rowMateriasAsignadas.Materia = new ML.Materia();
+                rowMateriasAsignadas.Materia.IdMateria = int.Parse(IdMateria);
+
+                ML.Result resultAddMateriasAsignadas = BL.MateriaAsignada.Add(rowMateriasAsignadas);
+                
+            }
+            return View();
+
         }
 
     }
