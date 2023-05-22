@@ -7,7 +7,7 @@
 <div class="container">
     <div class=row>
         <div class="text-center">
-            <h2>Materias Disponibles Para Asignar Al Alumno :  @Model.Alumno.Nombre @Model.Alumno.ApellidoPaterno </h2>
+            <h2>Materias Disponibles* Para Asignar Al Alumno :  @Model.Alumno.Nombre @Model.Alumno.ApellidoPaterno </h2>
 
         </div>
     </div>
@@ -22,10 +22,19 @@
     <br />
     @using (Html.BeginForm("Form", "MateriaAsignada", FormMethod.Post, new { enctype = "multipart/form-data" }))
     {
+
+        <div class="form-group hidden">
+            @Html.LabelFor(model => model.Alumno.IdAlumno, new { @class = "control-label col-md-2 hidden" })
+            <div class="col-md-3">
+                @Html.TextBoxFor(model => model.Alumno.IdAlumno, new { @class = "form-control hidden", @readonly = true })
+
+            </div>
+        </div>
+
         <table class="table   table-hover table-bordered table-responsive ">
             <thead>
                 <tr class="table-secondary">
-                    <td>Editar</td>
+                    <td>Seleccionar</td>
                     <td style="display :none;">id</td>
                     <td>Nombre</td>
                     <td>Costo</td>
@@ -36,23 +45,34 @@
                 {
                     <tr>
 
-                        <td style="text-align: center; vertical-align: middle;"><a class="btn btn-info glyphicon" href="@Url.Action("GetAllMateriaAsignada", "MateriaAsignada", new { IdMateriaAsignada = materiasAsignadas.IdMateriaAsignada })"><i class="bi bi-pencil-square" style="color: ivory"></i>Editar</a></td>
-                        <td class="text-center"> <input type="checkbox" value="@materiasAsignadas.Materia.IdMateria" name""> </td>
+
+                        <td class="text-center">
+                            <input id="checkbox_@materiasAsignadas.Materia.IdMateria" type="checkbox" value="@materiasAsignadas.Materia.IdMateria" name="MatriasAsignadasAlumnos" onclick="CalcularTotal(@materiasAsignadas.Materia.Costo, @materiasAsignadas.Materia.IdMateria)">
+                        </td>
                         <td>@materiasAsignadas.Materia.Nombre </td>
                         <td>@materiasAsignadas.Materia.Costo </td>
 
                     </tr>
                 }
+                <tr>
+                    <td style="border:hidden; border-top:5px; border-right:5px;"></td>
 
+                    <td class="text-center">Total:</td>
+
+                    <td id="total" class="text-center">0</td>
+                </tr>
             </tbody>
         </table>
+
+
 
         //BOTONES DE GUARDAR Y REGRESAR
         <div class="row">
 
             <div class="col text-center">
                 <input type="submit" value="Guardar" class="btn btn-success" />
-                @Html.ActionLink("Regresar", "GetAllMateriaAsignada", "MateriaAsignada", htmlAttributes: new { @class = "btn btn-danger" })
+                <a class="btn btn-danger" href="@Url.Action("GetAllMateriaAsignada", "MateriaAsignada", new { IdAlumno = Model.Alumno.IdAlumno })"> Regresar</a>
+
             </div>
 
         </div>
@@ -61,4 +81,19 @@
 
 
 </div>
+
+<script type="text/javascript">
+    function CalcularTotal(Costo, IdMateria) {
+        if ($('#checkbox_' + IdMateria).is(':checked')) {
+            var total = parseInt($('#total').text())
+            total = total + Costo;
+            $('#total').text(total)
+        }
+        else {
+            var total = parseInt($('#total').text())
+            total = total - Costo;
+            $('#total').text(total)
+        }
+    }
+</script>
 

@@ -103,7 +103,7 @@ namespace BL
                                     materiasAsignadas.Materia.Costo = decimal.Parse(row[3].ToString());
                                     materiasAsignadas.Alumno = new ML.Alumno();
                                     materiasAsignadas.Alumno.IdAlumno = int.Parse(row[4].ToString());
-                                    materiasAsignadas.Alumno.Nombre = row[5].ToString(); 
+                                    materiasAsignadas.Alumno.Nombre = row[5].ToString();
                                     result.Objects.Add(materiasAsignadas);
                                 }
                                 result.Correct = true;
@@ -161,8 +161,8 @@ namespace BL
                                     materiasNoAsignadas.Materia = new ML.Materia();
                                     materiasNoAsignadas.Materia.IdMateria = int.Parse(row[0].ToString());
                                     materiasNoAsignadas.Materia.Nombre = row[1].ToString();
-                                    materiasNoAsignadas.Materia.Costo= decimal.Parse(row[2].ToString());
-                                    
+                                    materiasNoAsignadas.Materia.Costo = decimal.Parse(row[2].ToString());
+
                                     result.Objects.Add(materiasNoAsignadas);
                                 }
                                 result.Correct = true;
@@ -186,9 +186,105 @@ namespace BL
             return result;
         }
 
-        public static ML.Result Add()
+        public static ML.Result Add(ML.MateriaAsignada asignarMaterias)
         {
             ML.Result result = new ML.Result();
+            try
+            {
+                using (SqlConnection context = new SqlConnection(DL.Conexion.GetConnectionString()))
+                {
+                    var query = "MateriaAsignadaAdd";
+                    using (SqlCommand cmd = new SqlCommand())
+                    {
+                        cmd.CommandText = query;
+                        cmd.Connection = context;
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        // Arreglo para almacenar los datos que fueron solicitados
+                        SqlParameter[] collection = new SqlParameter[2];
+
+                        collection[0] = new SqlParameter("IdMateria", SqlDbType.VarChar);
+                        collection[0].Value = asignarMaterias.Materia.IdMateria;
+
+                        collection[1] = new SqlParameter("IdAlumno", SqlDbType.VarChar);
+                        collection[1].Value = asignarMaterias.Alumno.IdAlumno;
+
+
+                        cmd.Parameters.AddRange(collection);
+
+                        cmd.Connection.Open();
+                        int RowsAffected = cmd.ExecuteNonQuery(); //0 -no se insertó //>=1 se insertó
+
+                        if (RowsAffected >= 1)
+                        {
+                            result.Correct = true;
+                        }
+                        else
+                        {
+                            result.Correct = false;
+                            result.ErrorMessage = "Ocurrió un error al ingresar el Alumno";
+                        }
+                    }
+                }
+                result.Correct = true;
+            }
+            catch (Exception ex)
+            {
+                result.Correct = false;
+                result.ErrorMessage = "ocurrio un error" + ex.Message;
+            }
+            return result;
+        }
+
+
+        public static ML.Result Delete(ML.MateriaAsignada borrarMaterias)
+        {
+            ML.Result result = new ML.Result();
+
+            try
+            {
+                using (SqlConnection context = new SqlConnection(DL.Conexion.GetConnectionString()))
+                {
+                    string query = "MateriaAsignadaDelete";
+                    using (SqlCommand cmd = new SqlCommand())
+                    {
+                        cmd.CommandText = query;
+                        cmd.Connection = context;
+                        cmd.CommandType = CommandType.StoredProcedure;
+
+                        // Arreglo para almacenar los datos que fueron solicitados
+                        SqlParameter[] collection = new SqlParameter[2];
+
+                        collection[0] = new SqlParameter("IdMateria", SqlDbType.VarChar);
+                        collection[0].Value = borrarMaterias.Materia.IdMateria;
+                        collection[1] = new SqlParameter("IdAlumno", SqlDbType.VarChar);
+                        collection[1].Value = borrarMaterias.Alumno.IdAlumno;
+
+
+
+                        cmd.Parameters.AddRange(collection);
+
+                        cmd.Connection.Open();
+
+                        int RowsAffected = cmd.ExecuteNonQuery(); //0 -no se insertó //>=1 se insertó
+
+                        if (RowsAffected >= 1)
+                        {
+                            result.Correct = true;
+                        }
+                        else
+                        {
+                            result.Correct = false;
+                            result.ErrorMessage = "Ocurrió un error al Eliminar el Registro";
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                result.Correct = false;
+                result.ErrorMessage = ex.Message;
+            }
+
 
             return result;
         }

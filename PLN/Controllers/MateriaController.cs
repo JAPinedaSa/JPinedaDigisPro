@@ -84,9 +84,10 @@ namespace PLN.Controllers
                 if (result.Correct)
                 {
                     materia = (ML.Materia)result.Object;
-                    
 
-                    
+                    ViewBag.Message = "Ocurrio un error al hacer la consulta:";
+
+
                     return View(materia);
                 }
                 else
@@ -118,14 +119,15 @@ namespace PLN.Controllers
                     if (resultAseguradora.IsSuccessStatusCode)
                     {
 
-                        return RedirectToAction("GetAll");
+                        //return RedirectToAction("GetAll");
+                        ViewBag.Message = "El resigistro de Aseguradora a sido agrgado con exito";
 
                     }
                     else
                     {
                         ViewBag.Message = "Ocurrio un error al insertar el registro" + " " + result.ErrorMessage;
                     }
-                    ViewBag.Message = "El resigistro de Aseguradora a sido agrgado con exito";
+                   
                 }
 
                 return View("Modal");
