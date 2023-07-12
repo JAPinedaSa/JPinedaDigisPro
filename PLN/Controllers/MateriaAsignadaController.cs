@@ -26,6 +26,7 @@ namespace PLN.Controllers
             }
             else
             {
+                Console.WriteLine(" ");
                 ViewBag.Message = "Ocurrio un error al tratar de consultar la información";
             }
             return View(alumno);

@@ -11,6 +11,7 @@ namespace SLWeb_Api.Controllers
 {
     public class MateriaController : ApiController
     {
+
         // GET: Materia
         [System.Web.Http.HttpGet]
         [System.Web.Http.Route("api/Materia/GetAll")]
