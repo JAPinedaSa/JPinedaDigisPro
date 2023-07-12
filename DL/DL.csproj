@@ -92,6 +92,7 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>JPinedaDigisPro.Designer.cs</LastGenOutput>
     </EntityDeploy>
+    <None Include="JPinedaDigisPro.bak" />
     <None Include="JPinedaDigisPro.edmx.diagram">
       <DependentUpon>JPinedaDigisPro.edmx</DependentUpon>
     </None>
